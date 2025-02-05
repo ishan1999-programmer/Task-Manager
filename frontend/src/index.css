@@ -58,7 +58,7 @@
   margin-bottom: 10px;
 }
 
-.task p {
+.task-name{
   padding-left: 5px;
   min-width: 300px;
   display: flex;
@@ -67,11 +67,24 @@
   font-size: 21px;
 }
 
+.task-name-done{
+  padding-left: 5px;
+  min-width: 300px;
+  display: flex;
+  align-items: center;
+  color: white;
+  font-size: 21px;
+  text-decoration: line-through;
+}
+
+
+
 .task button {
   border: none;
   font-size: 18px;
   padding: 5px;
   cursor: pointer;
+  border-radius: 5px;
 }
 
 .done {
@@ -86,7 +99,7 @@
   background-color: red;
 }
 
-.modal{
+.modal,.delete-modal{
     position: absolute;
     box-shadow: 0px 0px 5px 1px grey;
     border-radius: 10px;
@@ -96,7 +109,7 @@
     top: 20%;
 }
 
-.modal-heading{
+.modal-heading, .delete-modal-heading{
     color: rgb(23, 127, 165);
     font-size: 24px;
     font-weight: 600;
@@ -135,4 +148,33 @@
     top: 5px;
     right: 10px;
     cursor: pointer;
+}
+
+.delete-modal-button-box{
+  margin-top: 20px;
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+}
+
+
+.delete-modal-cancel{
+  border: none;
+   background-color:  grey;
+   color: white;
+   padding: 5px 8px;
+   font-size: 21px;
+   border-radius: 10px;
+   cursor: pointer;
+   
+}
+
+.delete-modal-delete{
+  border: none;
+  background-color: red;
+   color: white;
+   padding: 5px 8px;
+   font-size: 21px;
+   border-radius: 10px;
+   cursor: pointer;
 }
