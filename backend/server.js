@@ -1,8 +1,10 @@
 import express from "express";
+import cors from "cors";
 import { v4 as uuidv4 } from "uuid";
 const app = express();
 
 app.use("/api/tasks", express.json());
+app.use(cors());
 
 app.post("/api/tasks", (req, res) => {
   const { title } = req.body;
@@ -28,23 +30,21 @@ app.put("/api/tasks/:id", (req, res) => {
       }
     });
     res.status(200).json(data);
-  }
-  else{
-    res.status(404).json({message: "Task doesn't exists"});
+  } else {
+    res.status(404).json({ message: "Task doesn't exists" });
   }
 });
 
-app.delete("/api/tasks/:id" , (req,res)=>{
-    const {id} = req.params;
-    if(data.some((task) => task.id === id)){
-        const newData = data.filter((task)=>task.id!=id);
-        data = newData
-        res.status(200).json(data);
-    }
-    else{
-        res.status(400).json({message: "Task doesn't exists" });
-    }
-})
+app.delete("/api/tasks/:id", (req, res) => {
+  const { id } = req.params;
+  if (data.some((task) => task.id === id)) {
+    const newData = data.filter((task) => task.id != id);
+    data = newData;
+    res.status(200).json(data);
+  } else {
+    res.status(400).json({ message: "Task doesn't exists" });
+  }
+});
 
 app.listen(5000, () => {
   console.log("sever listening at port 5000");

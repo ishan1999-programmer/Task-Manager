@@ -1,13 +1,14 @@
 import Task from "./Task";
 import Modal from "./Modal";
 import DeleteModal from "./DeleteModal";
-import { useState } from "react";
+import { useDebugValue, useState } from "react";
 
 const Home = () => {
   const [modal, setIsModal] = useState("");
   const [task, setTask] = useState("");
   const [deleteModal, setIsDeleteModal] = useState(false);
-  const data = []
+  const [data, setData] = useState([]);
+  const [taskId, setTaskId] = useState("");
   return (
     <div className="container">
       <div className={modal || deleteModal ? "content-hide" : "content"}>
@@ -20,16 +21,20 @@ const Home = () => {
           Create
         </button>
         <ul className="tasks-list">
-            {data.map((task)=> <Task
-            key={task.id}
-            title={task.title}
-            isCompleted={task.isCompleted}
-            setIsModal={setIsModal}
-            setIsDeleteModal={setIsDeleteModal}
-            task={task}
-            setTask={setTask}
-          />)}
-          
+          {data.map((task) => (
+            <Task
+              key={task.id}
+              id={task.id}
+              title={task.title}
+              isCompleted={task.isCompleted}
+              setIsModal={setIsModal}
+              setIsDeleteModal={setIsDeleteModal}
+              task={task}
+              setTask={setTask}
+              setData={setData}
+              setTaskId={setTaskId}
+            />
+          ))}
         </ul>
       </div>
       {modal && (
@@ -38,9 +43,17 @@ const Home = () => {
           setIsModal={setIsModal}
           task={task}
           setTask={setTask}
+          setData={setData}
+          taskId={taskId}
         />
       )}
-      {deleteModal && <DeleteModal setIsDeleteModal={setIsDeleteModal} />}
+      {deleteModal && (
+        <DeleteModal
+          setIsDeleteModal={setIsDeleteModal}
+          taskId={taskId}
+          setData={setData}
+        />
+      )}
     </div>
   );
 };
