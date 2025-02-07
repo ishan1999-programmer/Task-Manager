@@ -7,7 +7,7 @@ const Home = () => {
   const [modal, setIsModal] = useState("");
   const [task, setTask] = useState("");
   const [deleteModal, setIsDeleteModal] = useState(false);
-  const data = [{id:1 , title:"task1" , isCompleted: false},{id:2 , title:"task2" , isCompleted: false}, {id:3 , title:"task3" , isCompleted: false}]
+  const data = []
   return (
     <div className="container">
       <div className={modal || deleteModal ? "content-hide" : "content"}>
