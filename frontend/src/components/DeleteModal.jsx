@@ -1,10 +1,15 @@
+import { useState } from "react";
 import axios from "axios";
 
 const DeleteModal = ({ setIsDeleteModal, setData, taskId }) => {
+    let [isLoading , setIsLoading] = useState(false);
+  
   async function handleDeleteClick() {
+    setIsLoading(true);
     let dataFetched = await axios.delete(
       `http://localhost:5000/api/tasks/${taskId}`
     );
+    setIsLoading(false);
     setData(dataFetched.data);
     setIsDeleteModal(false);
   }
@@ -22,9 +27,10 @@ const DeleteModal = ({ setIsDeleteModal, setData, taskId }) => {
         <button
           type="button"
           className="delete-modal-delete"
+          disabled={isLoading}
           onClick={handleDeleteClick}
         >
-          Delete
+          {isLoading ? "Deleting..." : "Delete"}
         </button>
       </div>
     </div>

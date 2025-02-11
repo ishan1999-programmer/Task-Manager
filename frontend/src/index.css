@@ -138,6 +138,11 @@
    cursor: pointer;
 }
 
+.modal-input-box button:disabled{
+  background-color: grey;
+  color: black;
+}
+
 .close-modal{
     border: none;
     background-color: white;
@@ -177,4 +182,9 @@
    font-size: 21px;
    border-radius: 10px;
    cursor: pointer;
+}
+
+.delete-modal-delete:disabled{
+  background-color: grey;
+  color: black;
 }

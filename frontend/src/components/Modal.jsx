@@ -2,6 +2,7 @@ import { useState } from "react";
 import axios from "axios";
 
 const Modal = ({ modal, setIsModal, task, setTask, setData, taskId }) => {
+  let [isLoading , setIsLoading] = useState(false);
   function handleClick() {
     if (modal === "create") {
       addTask();
@@ -11,19 +12,23 @@ const Modal = ({ modal, setIsModal, task, setTask, setData, taskId }) => {
   }
 
   async function addTask() {
+    setIsLoading(true);
     let dataFetched = await axios.post("http://localhost:5000/api/tasks", {
       title: task,
     });
+    setIsLoading(false);
     setData(dataFetched.data);
     setIsModal("");
     setTask("");
   }
 
   async function editTask() {
+    setIsLoading(true);
     let dataFetched = await axios.put(
       `http://localhost:5000/api/tasks/${taskId}`,
       { title: task, isCompleted: false }
     );
+    setIsLoading(false);
     setData(dataFetched.data);
     setIsModal("");
     setTask("");
@@ -43,8 +48,8 @@ const Modal = ({ modal, setIsModal, task, setTask, setData, taskId }) => {
           value={task}
           onChange={(e) => setTask(e.target.value)}
         />
-        <button type="button" onClick={() => handleClick()}>
-          {modal === "create" ? "Add" : "Save"}
+        <button type="button" disabled={isLoading} onClick={() => handleClick()}>
+          {isLoading ?(modal==="create" ? "Adding..." : "Editing...") : (modal==="create" ? "Add" : "Edit")  }
         </button>
       </div>
     </div>
