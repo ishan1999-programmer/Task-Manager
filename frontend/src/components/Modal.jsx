@@ -2,7 +2,7 @@ import { useState } from "react";
 import axios from "axios";
 
 const Modal = ({ modal, setIsModal, task, setTask, setData, taskId }) => {
-  let [isLoading , setIsLoading] = useState(false);
+  let [isLoading, setIsLoading] = useState(false);
   function handleClick() {
     if (modal === "create") {
       addTask();
@@ -48,8 +48,18 @@ const Modal = ({ modal, setIsModal, task, setTask, setData, taskId }) => {
           value={task}
           onChange={(e) => setTask(e.target.value)}
         />
-        <button type="button" disabled={isLoading} onClick={() => handleClick()}>
-          {isLoading ?(modal==="create" ? "Adding..." : "Editing...") : (modal==="create" ? "Add" : "Edit")  }
+        <button
+          type="button"
+          disabled={isLoading}
+          onClick={() => handleClick()}
+        >
+          {isLoading
+            ? modal === "create"
+              ? "Adding..."
+              : "Editing..."
+            : modal === "create"
+            ? "Add"
+            : "Edit"}
         </button>
       </div>
     </div>

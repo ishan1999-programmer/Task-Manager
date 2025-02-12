@@ -2,8 +2,8 @@ import { useState } from "react";
 import axios from "axios";
 
 const DeleteModal = ({ setIsDeleteModal, setData, taskId }) => {
-    let [isLoading , setIsLoading] = useState(false);
-  
+  let [isLoading, setIsLoading] = useState(false);
+
   async function handleDeleteClick() {
     setIsLoading(true);
     let dataFetched = await axios.delete(
